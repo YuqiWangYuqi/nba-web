@@ -9,8 +9,8 @@ class Main extends Component {
 
     componentDidMount() {
         window.nba = nba;
-        nba.stats.playerInfo({PlayerID: nba.findPlayer('Damian ' +
-                'Lillard').playerId}).then((info) => {
+        nba.stats.playerInfo({PlayerID: nba.findPlayer('LeBron ' +
+                'James').playerId}).then((info) => {
                     console.log(info);
                     const playInfo =
                         Object.assign(info.commonPlayerInfo[0], info.playerHeadlineStats[0]);
