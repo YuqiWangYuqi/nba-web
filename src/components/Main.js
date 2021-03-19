@@ -5,13 +5,13 @@ import ShotChart from "./ShotChart";
 
 class Main extends Component {
     state = {
-        playerInfo: {}
+        playerInfo: {},
+        playerId: nba.findPlayer("LeBron James").playerId,
     }
 
     componentDidMount() {
         window.nba = nba;
-        nba.stats.playerInfo({PlayerID: nba.findPlayer('LeBron ' +
-                'James').playerId}).then((info) => {
+        nba.stats.playerInfo({PlayerID: this.state.playerId}).then((info) => {
                     console.log(info);
                     const playInfo =
                         Object.assign(info.commonPlayerInfo[0], info.playerHeadlineStats[0]);
@@ -24,7 +24,7 @@ class Main extends Component {
         return (
           <div className="main">
               <Profile playerInfo={this.state.playerInfo} />
-              <ShotChart />
+              <ShotChart playerId={this.state.playerId} />
           </div>
         );
     }
