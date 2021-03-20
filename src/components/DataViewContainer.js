@@ -13,7 +13,7 @@ class DataViewContainer extends Component {
     }
 
     onCountSliderChange = (count) => {
-        this.setState({ minCount: count });
+        this.setState({minCount: count});
     }
 
     onChartTypeChange = (e) => {
@@ -34,8 +34,25 @@ class DataViewContainer extends Component {
                 />
 
                 <div className="filters">
-                    <CounterSlider value={this.state.minCount}
-                                   onCountSliderChange={_.debounce(this.onCountSliderChange, 500)}/>
+                    {this.state.chartType === 'hexbin' ?
+                        <CounterSlider value={this.state.minCount}
+                                       onCountSliderChange={_.debounce(this.onCountSliderChange, 500)}/> : null}
+                    <br/>
+                    <Row>
+                        <Col span={9}>
+                            <Radio.Group onChange={this.onChartTypeChange} value={this.state.chartType}>
+                                <Radio value="hexbin">Hexbin</Radio>
+                                <Radio value="scatter">Scatter</Radio>
+                            </Radio.Group>
+                        </Col>
+                        <Col span={4}>
+                            <Switch
+                                checkedChildren="On"
+                                unCheckedChildren="Off"
+                                onChange={this.onToolTipChange}
+                                defaultChecked/>
+                        </Col>
+                    </Row>
                 </div>
             </div>
         );
