@@ -14,7 +14,7 @@ class ShotChart extends Component {
         chartType: PropTypes.string,
         displayTooltip: PropTypes.bool,
     }
-    componentDidMount() {
+    componentDidUpdate() {
         nba.stats.shots({PlayerID: this.props.playerId}).
         then((response) => {
             const final_shots = response.shot_Chart_Detail.map(shot =>({
